@@ -64,7 +64,8 @@ resource "aws_instance" "instance" {
   user_data_replace_on_change = var.user_data_replace_on_change
 
   metadata_options {
-    http_tokens = "required"
+    http_endpoint = "enabled"
+    http_tokens   = "required"
   }
 
   root_block_device {
