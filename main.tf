@@ -63,11 +63,6 @@ resource "aws_instance" "instance" {
 
   user_data_replace_on_change = var.user_data_replace_on_change
 
-  metadata_options {
-    http_endpoint = "enabled"
-    http_tokens   = "required"
-  }
-
   root_block_device {
     volume_type = "gp3"
     volume_size = var.root_volume_size
