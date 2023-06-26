@@ -63,6 +63,10 @@ resource "aws_instance" "instance" {
 
   user_data_replace_on_change = var.user_data_replace_on_change
 
+  metadata_options {
+    http_tokens = "required"
+  }
+
   root_block_device {
     volume_type = "gp3"
     volume_size = var.root_volume_size
@@ -91,9 +95,6 @@ resource "aws_ebs_volume" "raid_array" {
   size              = var.raid_array_size / 10
   encrypted         = var.encrypt_volumes
   type              = "gp3"
-  tags = {
-    Name = "${local.tag_name} Raid Array Disk ${count.index}"
-  }
   lifecycle {
     replace_triggered_by = [aws_instance.instance.id]
   }
