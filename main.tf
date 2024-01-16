@@ -104,6 +104,7 @@ resource "aws_ebs_volume" "raid_array" {
   size              = var.raid_array_size / 10
   encrypted         = var.encrypt_volumes
   type              = "gp3"
+  tags              = local.instance_tags
   lifecycle {
     replace_triggered_by = [aws_instance.instance.id]
   }
